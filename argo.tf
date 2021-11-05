@@ -1,5 +1,5 @@
 locals {
-  argo_application_values  = {
+  argo_application_values = {
     "project" : var.argo_project
     "source" : {
       "repoURL" : var.helm_repo_url
