@@ -1,5 +1,6 @@
 locals {
-  k8s_irsa_role_create     = var.enabled && var.k8s_rbac_create && var.k8s_service_account_create && var.k8s_irsa_role_create
+  k8s_role_create          = length(var.k8s_role_arn) == 0 ? true : false
+  k8s_irsa_role_create     = var.enabled && var.k8s_rbac_create && var.k8s_service_account_create && local.k8s_role_create
   k8s_service_account_name = "${var.helm_chart_name}-${var.helm_release_name}"
   values_default = yamlencode({
     "gitlabUrl" : var.gitlab_url
@@ -15,7 +16,7 @@ locals {
       "clusterWideAccess" : "false"
       "serviceAccountName" : local.k8s_service_account_name
       "serviceAccountAnnotations" : {
-        "eks.amazonaws.com/role-arn" : local.k8s_irsa_role_create ? aws_iam_role.gitlab_runner[0].arn : var.k8s_assume_role_arn
+        "eks.amazonaws.com/role-arn" : local.k8s_irsa_role_create ? aws_iam_role.gitlab_runner[0].arn : var.k8s_role_arn
       }
     }
     "metrics" : {

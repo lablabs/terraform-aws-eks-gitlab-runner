@@ -103,21 +103,27 @@ variable "k8s_service_account_create" {
   description = "Whether to create Service Account"
 }
 
-variable "k8s_irsa_role_create" {
-  type        = bool
-  default     = true
-  description = "Whether to create IRSA role and annotate service account"
-}
+# variable "k8s_irsa_role_create" {
+#   type        = bool
+#   default     = true
+#   description = "Whether to create IRSA role and annotate service account"
+# }
 
 variable "k8s_irsa_role_name_prefix" {
   type        = string
   default     = "gitlab-runner-irsa"
-  description = "The IRSA role name prefix for vector"
+  description = "The IRSA role name prefix for gitlab_runner"
 }
 
-variable "k8s_assume_role_arn" {
+variable "k8s_irsa_additional_policies" {
+  type        = list(string)
+  default     = []
+  description = "Additional policies arn to be attached to k8s_role"
+}
+
+variable "k8s_role_arn" {
   default     = ""
-  description = "Whether to create and use default role or assume existing role. Useful for a variety of use cases, such as cross account access. Default (empty string) use default generted role."
+  description = "Whether to create and use default role or use existing role. Useful for a variety of use cases, such as cross account access. Default (empty string) use default generted role."
 }
 
 variable "settings" {
