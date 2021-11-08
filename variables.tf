@@ -112,7 +112,7 @@ variable "k8s_irsa_role_name_prefix" {
 variable "k8s_irsa_additional_policies" {
   type        = list(string)
   default     = []
-  description = "Additional policies arn to be attached to k8s_role"
+  description = "Additional policies arn to be attached to created k8s_role"
 }
 
 variable "k8s_role_arn" {
