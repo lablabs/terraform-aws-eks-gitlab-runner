@@ -76,11 +76,11 @@ module "gitlab-runner" {
 
   values = <<-EOF
     k8s_irsa_additional_policies : []
-      k8s_role_arn : ""
-      values = yamlencode({
-        "runners" : {
-          "tags" : "test-tag1, test-tag2"
-        }
-      })
+    k8s_role_arn : ""
+    values = yamlencode({
+      "runners" : {
+        "tags" : "test-tag1, test-tag2"
+      }
+    })
   EOF
 }
