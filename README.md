@@ -1,4 +1,4 @@
-# Argo Rollouts Terraform module
+# Gitlab runner Terraform module
 
 [![labyrinth labs logo](ll-logo.png)](https://lablabs.io/)
 
@@ -11,13 +11,13 @@ We help companies build, run, deploy and scale software and infrastructure by em
 
 ## Description
 
-A terraform module to deploy the Argo Rollouts
+A terraform module to deploy gitlab runner.
 
 This module deploys ArgoCD in two different ways:
 1. A helm release
 2. ArgoCD Application CRD
 
-When `argo_application_enabled` variable is set to true, Argo Rollouts are deployed as ArgoCD Application resource
+When `argo_application_enabled` variable is set to true, gitlab runner is deployed as ArgoCD Application resource
 
 ## Related Projects
 
