@@ -7,13 +7,6 @@ locals {
     "runnerRegistrationToken" : var.gitlab_token
     "rbac" : {
       "create" : var.k8s_rbac_create
-      "rules" : []
-      # - resources: ["pods", "secrets"]
-      #   verbs: ["get", "list", "watch", "create", "patch", "delete"]
-      # - apiGroups: [""]
-      #   resources: ["pods/exec"]
-      #   verbs: ["create", "patch", "delete"]
-      "clusterWideAccess" : "false"
       "serviceAccountName" : local.k8s_service_account_name
       "serviceAccountAnnotations" : {
         "eks.amazonaws.com/role-arn" : local.k8s_irsa_role_create ? aws_iam_role.gitlab_runner[0].arn : var.k8s_role_arn
@@ -23,12 +16,6 @@ locals {
       "enabled" : "true"
     }
     "runners" : {
-      "config" : <<-EOF
-        [[runners]]
-          [runners.kubernetes]
-            namespace = "{{.Release.Namespace}}"
-            image = "ubuntu:16.04"
-      EOF
       "privileged" : "false"
       "serviceAccountName" : local.k8s_service_account_name
     }

@@ -22,14 +22,18 @@ When `argo_application_enabled` variable is set to true, gitlab runner is deploy
 ## Related Projects
 
 Check out these related projects.
-
-- [terraform-aws-eks-external-dns](https://github.com/lablabs/terraform-aws-eks-external-dns)
-- [terraform-aws-eks-calico](https://github.com/lablabs/terraform-aws-eks-calico)
-- [terraform-aws-eks-alb-ingress](https://github.com/lablabs/terraform-aws-eks-alb-ingress)
+- [terraform-helm-argocd](https://github.com/lablabs/terraform-helm-argocd)
+- [terraform-helm-argo-rollouts](https://github.com/lablabs/terraform-helm-argo-rollouts)
 - [terraform-aws-eks-metrics-server](https://github.com/lablabs/terraform-aws-eks-metrics-server)
+- [terraform-aws-eks-cluster-autoscaler](https://github.com/lablabs/terraform-aws-eks-cluster-autoscaler)
+- [terraform-aws-eks-external-dns](https://github.com/lablabs/terraform-aws-eks-external-dns)
+- [terraform-aws-vector-agent-log](https://github.com/lablabs/terraform-aws-eks-vector-agent-log)
+- [terraform-aws-eks-ingress-nginx](https://github.com/lablabs/terraform-aws-eks-ingress-nginx)
 - [terraform-aws-eks-prometheus-node-exporter](https://github.com/lablabs/terraform-aws-eks-prometheus-node-exporter)
 - [terraform-aws-eks-kube-state-metrics](https://github.com/lablabs/terraform-aws-eks-kube-state-metrics)
 - [terraform-aws-eks-node-problem-detector](https://github.com/lablabs/terraform-aws-eks-node-problem-detector)
+- [terraform-aws-eks-cert-manager](https://github.com/lablabs/terraform-aws-eks-cert-manager)
+- [terraform-aws-eks-load-balancer-controller](https://github.com/lablabs/terraform-aws-eks-load-balancer-controller)
 
 
 ## Examples
@@ -76,7 +80,6 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_cluster_identity_oidc_issuer"></a> [cluster\_identity\_oidc\_issuer](#input\_cluster\_identity\_oidc\_issuer) | The OIDC Identity issuer for the cluster | `string` | n/a | yes |
 | <a name="input_cluster_identity_oidc_issuer_arn"></a> [cluster\_identity\_oidc\_issuer\_arn](#input\_cluster\_identity\_oidc\_issuer\_arn) | The OIDC Identity issuer ARN for the cluster that can be used to associate IAM roles with a service account | `string` | n/a | yes |
-| <a name="input_gitlab_token"></a> [gitlab\_token](#input\_gitlab\_token) | Gitlab token to be authenticated via gitlab | `string` | n/a | yes |
 | <a name="input_argo_application_enabled"></a> [argo\_application\_enabled](#input\_argo\_application\_enabled) | If set to true, the module will be deployed as ArgoCD application, otherwise it will be deployed as a Helm release | `bool` | `false` | no |
 | <a name="input_argo_application_use_helm"></a> [argo\_application\_use\_helm](#input\_argo\_application\_use\_helm) | If set to true, the ArgoCD Application manifest will be deployed using Kubernetes provider as a Helm release. Otherwise it'll be deployed as a Kubernetes manifest. See Readme for more info | `bool` | `false` | no |
 | <a name="input_argo_application_values"></a> [argo\_application\_values](#input\_argo\_application\_values) | Value overrides to use when deploying argo application object with helm | `string` | `""` | no |
@@ -85,6 +88,7 @@ No modules.
 | <a name="input_argo_project"></a> [argo\_project](#input\_argo\_project) | ArgoCD Application project | `string` | `"default"` | no |
 | <a name="input_argo_sync_policy"></a> [argo\_sync\_policy](#input\_argo\_sync\_policy) | ArgoCD syncPolicy manifest parameter | `map` | `{}` | no |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Variable indicating whether deployment is enabled | `bool` | `true` | no |
+| <a name="input_gitlab_token"></a> [gitlab\_token](#input\_gitlab\_token) | Gitlab token to be authenticated via gitlab | `string` | `""` | no |
 | <a name="input_gitlab_url"></a> [gitlab\_url](#input\_gitlab\_url) | Gitlab URL | `string` | `"https://gitlab.com/"` | no |
 | <a name="input_helm_atomic"></a> [helm\_atomic](#input\_helm\_atomic) | If set, installation process purges chart on fail. The wait flag will be set automatically if atomic is used. Defaults to false. | `bool` | `false` | no |
 | <a name="input_helm_chart_name"></a> [helm\_chart\_name](#input\_helm\_chart\_name) | Helm chart name to be installed | `string` | `"gitlab-runner"` | no |
@@ -101,6 +105,8 @@ No modules.
 | <a name="input_k8s_rbac_create"></a> [k8s\_rbac\_create](#input\_k8s\_rbac\_create) | Whether to create and use RBAC resources | `bool` | `true` | no |
 | <a name="input_k8s_role_arn"></a> [k8s\_role\_arn](#input\_k8s\_role\_arn) | Whether to create and use default role or use existing role. Useful for a variety of use cases, such as cross account access. Default (empty string) use default generted role. | `string` | `""` | no |
 | <a name="input_k8s_service_account_create"></a> [k8s\_service\_account\_create](#input\_k8s\_service\_account\_create) | Whether to create Service Account | `bool` | `true` | no |
+| <a name="input_runner_secret"></a> [runner\_secret](#input\_runner\_secret) | Kubernetes secret resource for gitlab runner sensitive data such as gitlab\_token or runner\_token | `string` | `""` | no |
+| <a name="input_runner_token"></a> [runner\_token](#input\_runner\_token) | The Runner Token for adding new Runners to the GitLab Server. This must be retrieved from your GitLab Instance. It is token of already registered runner. | `string` | `""` | no |
 | <a name="input_settings"></a> [settings](#input\_settings) | Additional settings which will be passed to the Helm chart values, see https://artifacthub.io/packages/helm/argo/argo-cd | `map(any)` | `{}` | no |
 | <a name="input_values"></a> [values](#input\_values) | Additional yaml encoded values which will be passed to the Helm chart. | `string` | `""` | no |
 

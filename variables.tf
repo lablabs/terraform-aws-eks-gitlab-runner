@@ -16,17 +16,6 @@ variable "cluster_identity_oidc_issuer_arn" {
   description = "The OIDC Identity issuer ARN for the cluster that can be used to associate IAM roles with a service account"
 }
 
-variable "gitlab_url" {
-  type        = string
-  default     = "https://gitlab.com/"
-  description = "Gitlab URL"
-}
-
-variable "gitlab_token" {
-  type        = string
-  description = "Gitlab token to be authenticated via gitlab"
-}
-
 # Helm
 
 variable "helm_create_namespace" {
@@ -126,6 +115,36 @@ variable "settings" {
   description = "Additional settings which will be passed to the Helm chart values, see https://artifacthub.io/packages/helm/argo/argo-cd"
 }
 
+variable "values" {
+  type        = string
+  default     = ""
+  description = "Additional yaml encoded values which will be passed to the Helm chart."
+}
+
+variable "gitlab_url" {
+  type        = string
+  default     = "https://gitlab.com/"
+  description = "Gitlab URL"
+}
+
+variable "gitlab_token" {
+  type        = string
+  default     = ""
+  description = "Gitlab token to be authenticated via gitlab"
+}
+
+variable "runner_token" {
+  type        = string
+  default     = ""
+  description = "The Runner Token for adding new Runners to the GitLab Server. This must be retrieved from your GitLab Instance. It is token of already registered runner."
+}
+
+variable "runner_secret" {
+  type        = string
+  default     = ""
+  description = "Kubernetes secret resource for gitlab runner sensitive data such as gitlab_token or runner_token"
+}
+
 variable "argo_application_enabled" {
   type        = bool
   default     = false
@@ -141,12 +160,6 @@ variable "argo_application_use_helm" {
 variable "argo_application_values" {
   default     = ""
   description = "Value overrides to use when deploying argo application object with helm"
-}
-
-variable "values" {
-  type        = string
-  default     = ""
-  description = "Additional yaml encoded values which will be passed to the Helm chart."
 }
 
 variable "argo_destionation_server" {
