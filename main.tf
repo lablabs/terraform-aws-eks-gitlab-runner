@@ -4,7 +4,7 @@ locals {
   k8s_service_account_name = "${var.helm_chart_name}-${var.helm_release_name}"
   values_default = yamlencode({
     "gitlabUrl" : var.gitlab_url
-    "runnerRegistrationToken" : var.gitlab_token
+    "runnerRegistrationToken" : var.runner_registration_token
     "rbac" : {
       "create" : var.k8s_rbac_create
       "serviceAccountName" : local.k8s_service_account_name

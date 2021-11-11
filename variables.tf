@@ -127,10 +127,10 @@ variable "gitlab_url" {
   description = "Gitlab URL"
 }
 
-variable "gitlab_token" {
+variable "runner_registration_token" {
   type        = string
   default     = ""
-  description = "Gitlab token to be authenticated via gitlab"
+  description = "The Registration Token for adding new Runners to the GitLab Server. This must be retrieved from your GitLab Instance"
 }
 
 variable "runner_token" {
