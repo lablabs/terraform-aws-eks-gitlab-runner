@@ -33,7 +33,7 @@ resource "helm_release" "argocd_application" {
 
   chart     = "${path.module}/helm/argocd-application"
   name      = var.helm_release_name
-  namespace = var.k8s_namespace
+  namespace = var.argo_namespace
 
   values = [
     data.utils_deep_merge_yaml.argo_application_values[0].output
@@ -48,7 +48,7 @@ resource "kubernetes_manifest" "self" {
     "kind"       = "Application"
     "metadata" = {
       "name"      = var.helm_release_name
-      "namespace" = var.k8s_namespace
+      "namespace" = var.argo_namespace
     }
     "spec" = local.argo_application_values
   }

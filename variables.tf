@@ -76,7 +76,7 @@ variable "helm_atomic" {
 
 variable "k8s_namespace" {
   type        = string
-  default     = "argo"
+  default     = "gitlab-runner"
   description = "The K8s namespace in which the gitlab-runner has been created"
 }
 
@@ -143,6 +143,13 @@ variable "runner_secret" {
   type        = string
   default     = ""
   description = "Kubernetes secret resource for gitlab runner sensitive data such as gitlab_token or runner_token"
+}
+
+# ArgoCD variables
+variable "argo_namespace" {
+  type        = string
+  default     = "argo"
+  description = "Namespace to deploy ArgoCD application CRD to"
 }
 
 variable "argo_application_enabled" {
