@@ -77,7 +77,7 @@ variable "helm_atomic" {
 variable "k8s_namespace" {
   type        = string
   default     = "argo"
-  description = "The K8s namespace in which the ingress-nginx has been created"
+  description = "The K8s namespace in which the gitlab-runner has been created"
 }
 
 variable "k8s_rbac_create" {
