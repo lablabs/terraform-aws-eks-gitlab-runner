@@ -85,6 +85,7 @@ No modules.
 | <a name="input_argo_application_values"></a> [argo\_application\_values](#input\_argo\_application\_values) | Value overrides to use when deploying argo application object with helm | `string` | `""` | no |
 | <a name="input_argo_destionation_server"></a> [argo\_destionation\_server](#input\_argo\_destionation\_server) | Destination server for ArgoCD Application | `string` | `"https://kubernetes.default.svc"` | no |
 | <a name="input_argo_info"></a> [argo\_info](#input\_argo\_info) | ArgoCD info manifest parameter | `list` | <pre>[<br>  {<br>    "name": "terraform",<br>    "value": "true"<br>  }<br>]</pre> | no |
+| <a name="input_argo_namespace"></a> [argo\_namespace](#input\_argo\_namespace) | Namespace to deploy ArgoCD application CRD to | `string` | `"argo"` | no |
 | <a name="input_argo_project"></a> [argo\_project](#input\_argo\_project) | ArgoCD Application project | `string` | `"default"` | no |
 | <a name="input_argo_sync_policy"></a> [argo\_sync\_policy](#input\_argo\_sync\_policy) | ArgoCD syncPolicy manifest parameter | `map` | `{}` | no |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Variable indicating whether deployment is enabled | `bool` | `true` | no |
@@ -99,8 +100,9 @@ No modules.
 | <a name="input_helm_timeout"></a> [helm\_timeout](#input\_helm\_timeout) | Time in seconds to wait for any individual kubernetes operation (like Jobs for hooks). Defaults to 300 seconds. | `number` | `300` | no |
 | <a name="input_helm_wait"></a> [helm\_wait](#input\_helm\_wait) | Will wait until all resources are in a ready state before marking the release as successful. It will wait for as long as timeout. Defaults to true. | `bool` | `true` | no |
 | <a name="input_k8s_irsa_additional_policies"></a> [k8s\_irsa\_additional\_policies](#input\_k8s\_irsa\_additional\_policies) | Additional policies arn to be attached to created k8s\_role | `list(string)` | `[]` | no |
+| <a name="input_k8s_irsa_additional_policies_count"></a> [k8s\_irsa\_additional\_policies\_count](#input\_k8s\_irsa\_additional\_policies\_count) | Additional policies count to be attached to created k8s\_role | `number` | `0` | no |
 | <a name="input_k8s_irsa_role_name_prefix"></a> [k8s\_irsa\_role\_name\_prefix](#input\_k8s\_irsa\_role\_name\_prefix) | The IRSA role name prefix for gitlab\_runner | `string` | `"gitlab-runner-irsa"` | no |
-| <a name="input_k8s_namespace"></a> [k8s\_namespace](#input\_k8s\_namespace) | The K8s namespace in which the ingress-nginx has been created | `string` | `"argo"` | no |
+| <a name="input_k8s_namespace"></a> [k8s\_namespace](#input\_k8s\_namespace) | The K8s namespace in which the gitlab-runner has been created | `string` | `"gitlab-runner"` | no |
 | <a name="input_k8s_rbac_create"></a> [k8s\_rbac\_create](#input\_k8s\_rbac\_create) | Whether to create and use RBAC resources | `bool` | `true` | no |
 | <a name="input_k8s_role_arn"></a> [k8s\_role\_arn](#input\_k8s\_role\_arn) | Whether to create and use default role or use existing role. Useful for a variety of use cases, such as cross account access. Default (empty string) use default generted role. | `string` | `""` | no |
 | <a name="input_k8s_service_account_create"></a> [k8s\_service\_account\_create](#input\_k8s\_service\_account\_create) | Whether to create Service Account | `bool` | `true` | no |
