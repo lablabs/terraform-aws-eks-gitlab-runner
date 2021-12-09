@@ -104,6 +104,12 @@ variable "k8s_irsa_additional_policies" {
   description = "Additional policies arn to be attached to created k8s_role"
 }
 
+variable "k8s_irsa_additional_policies_count" {
+  type        = number
+  default     = 0
+  description = "Additional policies count to be attached to created k8s_role"
+}
+
 variable "k8s_role_arn" {
   default     = ""
   description = "Whether to create and use default role or use existing role. Useful for a variety of use cases, such as cross account access. Default (empty string) use default generted role."
