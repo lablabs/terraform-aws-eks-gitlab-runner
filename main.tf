@@ -1,7 +1,7 @@
 locals {
   k8s_role_create          = length(var.k8s_role_arn) == 0 ? true : false
   k8s_irsa_role_create     = var.enabled && var.k8s_rbac_create && var.k8s_service_account_create && local.k8s_role_create
-  k8s_service_account_name = "${var.helm_chart_name}-${var.helm_release_name}"
+  k8s_service_account_name = "${var.helm_release_name}-${var.helm_chart_name}"
   values_default = yamlencode({
     "gitlabUrl" : var.gitlab_url
     "runnerRegistrationToken" : var.runner_registration_token
