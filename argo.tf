@@ -8,7 +8,10 @@ locals {
       "helm" : {
         "releaseName" : var.helm_release_name
         "parameters" : [for k, v in var.settings : tomap({ "forceString" : true, "name" : k, "value" : v })]
-        "values" : try(data.utils_deep_merge_yaml.values[0].output, {})
+
+        # Function "try" isn't used here as it is causing Kubernetes Provider to crash with following error msg:
+        # panic: AttributeName("values"): can't use tftypes.DynamicPseudoType as tftypes.String
+        "values" : var.enabled ? data.utils_deep_merge_yaml.values[0].output : ""
       }
     }
     "destination" : {
