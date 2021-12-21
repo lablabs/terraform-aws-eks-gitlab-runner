@@ -1,8 +1,8 @@
 resource "aws_iam_role_policy_attachment" "gitlab_runner" {
-  count = var.k8s_irsa_additional_policies_count
+  for_each = local.k8s_irsa_role_create ? var.k8s_irsa_additional_policies : {}
 
   role       = aws_iam_role.gitlab_runner[0].name
-  policy_arn = var.k8s_irsa_additional_policies[count.index]
+  policy_arn = each.value
 }
 
 data "aws_iam_policy_document" "gitlab_runner_irsa" {

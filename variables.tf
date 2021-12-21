@@ -99,15 +99,9 @@ variable "k8s_irsa_role_name_prefix" {
 }
 
 variable "k8s_irsa_additional_policies" {
-  type        = list(string)
-  default     = []
-  description = "Additional policies arn to be attached to created k8s_role"
-}
-
-variable "k8s_irsa_additional_policies_count" {
-  type        = number
-  default     = 0
-  description = "Additional policies count to be attached to created k8s_role"
+  type        = map(string)
+  default     = {}
+  description = "Map of the additional policies to be attached to default role. Where key is arbiraty id and value is policy arn."
 }
 
 variable "k8s_role_arn" {
