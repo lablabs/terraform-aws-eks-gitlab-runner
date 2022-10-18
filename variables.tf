@@ -71,6 +71,12 @@ variable "rbac_create" {
   description = "Whether to create and use RBAC resources"
 }
 
+variable "service_account_name" {
+  type        = string
+  default     = "gitlab-runner"
+  description = "The k8s gitlab-runner service account name"
+}
+
 variable "irsa_role_create" {
   type        = bool
   default     = true
@@ -105,12 +111,6 @@ variable "irsa_tags" {
   type        = map(string)
   default     = {}
   description = "IRSA resources tags"
-}
-
-variable "service_account_name" {
-  type        = string
-  default     = "gitlab-runner"
-  description = "The k8s gitlab-runner service account name"
 }
 
 # ================ argo variables (required) ================

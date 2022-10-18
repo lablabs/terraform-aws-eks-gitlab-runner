@@ -10,10 +10,10 @@ output "helm_release_application_metadata" {
 
 output "kubernetes_application_attributes" {
   description = "Argo kubernetes manifest attributes"
-  value       = try(kubernetes_manifest.this, {})
+  value       = try(kubernetes_manifest.this[0], {})
 }
 
 output "iam_role_attributes" {
-  description = "<$addon-name> IAM role atributes"
+  description = "GitLab runner IAM role atributes"
   value       = try(aws_iam_role.this[0], {})
 }
