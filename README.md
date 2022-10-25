@@ -11,7 +11,7 @@ We help companies build, run, deploy and scale software and infrastructure by em
 
 ## Description
 
-A terraform module to deploy the GitLab runner on Amazon EKS cluster.
+A Terraform module to deploy the GitLab runner on Amazon EKS cluster.
 
 ## Related Projects
 
@@ -20,26 +20,26 @@ Check out other [terraform kubernetes addons](https://github.com/orgs/lablabs/re
 ## Deployment methods
 
 ### Helm
-Deploy helm chart by helm (default method, set `enabled = true`)
+Deploy Helm chart via Helm resource (default method, set `enabled = true`)
 
-### Argo kubernetes
-Deploy helm chart as argo application by kubernetes manifest (set `enabled = true` and `argo_enabled = true`)
+### Argo Kubernetes
+Deploy Helm chart as ArgoCD Application via Kubernetes manifest resource (set `enabled = true` and `argo_enabled = true`)
 
-### Argo helm
-When deploying with ArgoCD application, Kubernetes terraform provider requires access to Kubernetes cluster API during plan time. This introduces potential issue when you want to deploy the cluster with this addon at the same time, during the same Terraform run.
+> **Warning**
+>
+> When deploying with ArgoCD application, Kubernetes terraform provider requires access to Kubernetes cluster API during plan time. This introduces potential issue when you want to deploy the cluster with this addon at the same time, during the same Terraform run.
+>
+> To overcome this issue, the module deploys the ArgoCD application object using the Helm provider, which does not require API access during plan. If you want to deploy the application using this workaround, you can set the `argo_helm_enabled` variable to `true`.
 
-To overcome this issue, the module deploys the ArgoCD application object using the Helm provider, which does not require API access during plan. If you want to deploy the application using this workaround, you can set the `argo_helm_enabled` variable to `true`.
+### Argo Helm
+Deploy Helm chart as ArgoCD Application via Helm resource (set `enabled = true`, `argo_enabled = true` and `argo_helm_enabled = true`)
 
-Create helm release resource and deploy it as argo application (set `enabled = true`, `argo_enabled = true` and `argo_helm_enabled = true`)
-
-<!-- Uncomment paragraph bellow if addon contains IAM resources
 ## AWS IAM resources
 
-To disable of creation IRSA role and IRSA policy, set `irsa_role_create = false` and `irsa_policy_enabled = false`, respectively -->
+To disable of creation IRSA role and IRSA policy, set `irsa_role_create = false`.
 
-<!-- Uncomment paragraph bellow if addon uses Role assuming
 ### Role assuming
-To assume role set `irsa_assume_role_enabled = true` and specify `irsa_assume_role_arn` variable -->
+To assume role set `irsa_assume_role_enabled = true` and specify `irsa_assume_role_arn` variable
 
 ## Examples
 
