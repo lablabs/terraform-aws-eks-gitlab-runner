@@ -38,4 +38,6 @@ locals {
       enabled = true
     }
   })
+
+  addon_depends_on = []
 }
